@@ -51,7 +51,7 @@ None — this is the first phase.
 - [x] `pnpm format:check` passes
 - [x] `pnpm test` runs (passes — no tests yet, zero failures)
 - [x] `src/main.ts` bootstraps `AppModule` and listens on `process.env.PORT ?? 3000`
-- [x] `.env.example` contains `PORT`, `NODE_ENV`, `DATABASE_URL`, `JWT_SECRET`
+- [x] `.env.example` contains `PORT`, `NODE_ENV`, `DATABASE_URL`, `CORS_ALLOWED_ORIGINS`
 - [x] `.github/workflows/ci.yml` exists and includes lint + test + build steps
 - [x] `docs/STACK.md` and `docs/ARCHITECTURE.md` are populated
 - [x] `CLAUDE.md` is present with working agreement adapted for this repo
@@ -89,7 +89,7 @@ Phase 1 has no application logic to test. The test suite is empty but configured
 ## Assumptions
 
 - `DATABASE_URL` uses SQLite (`sqlite://./todo.db`) as the default; TypeORM is not installed until Phase 2.
-- `JWT_SECRET` is included in `.env.example` now to define the full environment contract upfront, even though auth is Phase 3.
+- `CORS_ALLOWED_ORIGINS` (not `JWT_SECRET`) is the correct env var per the spec; it controls allowed client origins for the CORS middleware.
 - `singleQuote: true` in `.prettierrc` (differs from monorepo default of `false`) — this repo targets a Node/API style convention.
 - The `eslint.config.js` uses `globals.node` (not `globals.browser`) since this is a server-side project.
 

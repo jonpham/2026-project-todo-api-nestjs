@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { PrismaModule } from '../prisma/prisma.module.js';
-import { TodosController } from './todos.controller.js';
-import { TodosService } from './todos.service.js';
+import { Module } from "@nestjs/common";
+import { PrismaModule } from "../prisma/prisma.module.js";
+import { TodosController } from "./todos.controller.js";
+import { TodosService } from "./todos.service.js";
 
 @Module({
   imports: [PrismaModule],

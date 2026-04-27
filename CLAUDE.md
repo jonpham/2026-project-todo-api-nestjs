@@ -8,13 +8,17 @@
 
 **Project Name:** todo-api-nestjs
 
-**Purpose:** Standalone NestJS v11 TODO API skeleton — demonstrates a production-ready REST API structure with TypeScript strict mode, Vitest testing, ESLint flat config, Prettier, and Husky pre-commit hooks.
+**Purpose:** Standalone NestJS v11 TODO API skeleton — demonstrates a production-ready REST API structure with TypeScript strict mode, Vitest testing, ESLint flat config, Prettier, and Husky pre-commit hooks. Developed as a standalone repo and integrated into the monorepo via Git Subtree.
 
-**GitHub Repo:** (to be linked after repo creation)
+**Standalone Repo:** `github.com/jonpham/todo-api-nestjs` (source of truth)
+
+**Monorepo Integration:** Mirrored at `apps/todo-api/` in the monorepo via Git Subtree
 
 ---
 
 ## Working Agreement
+
+This repo follows the same conventions as the parent monorepo (`2026-project-todo-skeleton-monorepo`). Read that CLAUDE.md for full context.
 
 ### Phase-Gating (Default)
 
@@ -65,18 +69,35 @@ Output the following before stopping:
 - `ES2022` target, `NodeNext` module resolution
 - Decorators enabled (`emitDecoratorMetadata`, `experimentalDecorators`)
 
+### Linting & Formatting
+
+- ESLint flat config (`eslint.config.js`) — matches monorepo, but with Node globals (not browser)
+- Prettier with **double quotes**, `es5` trailing commas, 2-space indent, 80-char width
+- Pre-commit hook via Husky + lint-staged runs both automatically
+
 ### Testing
 
 - Vitest for unit/integration tests
-- Test files: `src/**/*.spec.ts`
-- Run: `pnpm test`
-- Coverage: `pnpm test:coverage`
+- Test files: `src/**/*.spec.ts` and `test/**/*.e2e-spec.ts`
+- Run: `pnpm test` (unit), `pnpm test:e2e` (integration), `pnpm test:all` (both)
 
-### Linting & Formatting
+---
 
-- ESLint flat config (`eslint.config.js`)
-- Prettier with single quotes, trailing commas, 2-space indent
-- Pre-commit hook via Husky + lint-staged runs both automatically
+## Development Workflow (In This Repo)
+
+When advancing through phases:
+
+1. Start the phase: examine the feature doc in `docs/features/`
+2. Execute: work through steps (follow phase doc for step_gating behavior)
+3. Commit: after each step (or at phase end if `step_gating: false`), run Prettier/ESLint via pre-commit hook
+4. Verify: run local verification commands before stopping
+5. Stop: wait for explicit approval before the next step/phase
+
+---
+
+## Current Phase Status
+
+Check `docs/features/[STATUS]P{n}_*.md` for the active feature doc.
 
 ### Git Conventions
 

@@ -96,4 +96,22 @@ describe("TodosService", () => {
     mockPrismaService.todo.findUnique.mockResolvedValue(null);
     await expect(service.remove("missing")).rejects.toThrow(NotFoundException);
   });
+
+  describe("findOrFail (via findOne)", () => {
+    it("returns the todo when it exists", async () => {
+      mockPrismaService.todo.findUnique.mockResolvedValue(mockTodo);
+      const result = await service.findOne("uuid-1");
+      expect(result).toEqual(mockTodo);
+      expect(mockPrismaService.todo.findUnique).toHaveBeenCalledWith({
+        where: { id: "uuid-1" },
+      });
+    });
+
+    it("throws NotFoundException when todo does not exist", async () => {
+      mockPrismaService.todo.findUnique.mockResolvedValue(null);
+      await expect(service.findOne("missing-id")).rejects.toThrow(
+        "Todo missing-id not found"
+      );
+    });
+  });
 });
